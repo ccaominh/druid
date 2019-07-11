@@ -8,6 +8,7 @@ target
 *.swo
 .classpath
 .idea
+.gradle
 .project
 .PVS-Studio
 .settings/
