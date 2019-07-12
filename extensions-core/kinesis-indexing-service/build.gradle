@@ -7,9 +7,9 @@ dependencies {
     compile 'com.amazonaws:aws-java-sdk-sts:1.11.199'
     testCompile 'org.easymock:easymock:4.0.2'
     testCompile 'junit:junit:4.12'
-    testCompile project(':druid-server')
-    testCompile project(':druid-processing')
-    testCompile project(':druid-indexing-service')
+    testCompile project(path: ':druid-server', configuration: 'tests')
+    testCompile project(path: ':druid-processing', configuration: 'tests')
+    testCompile project(path: ':druid-indexing-service', configuration: 'tests')
     providedCompile project(':druid-core')
     providedCompile project(':druid-indexing-service')
     providedCompile project(':druid-server')

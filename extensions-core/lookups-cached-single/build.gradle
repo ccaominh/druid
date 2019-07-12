@@ -6,9 +6,9 @@ dependencies {
     compile 'org.mapdb:mapdb:1.0.8'
     compile 'org.antlr:stringtemplate:3.2'
     testCompile 'junit:junit:4.12'
-    testCompile project(':druid-server')
+    testCompile project(path: ':druid-server', configuration: 'tests')
     testCompile 'org.easymock:easymock:4.0.2'
-    testCompile project(':druid-processing')
+    testCompile project(path: ':druid-processing', configuration: 'tests')
     providedCompile project(':druid-core')
     providedCompile project(':druid-processing')
     providedCompile project(':druid-server')

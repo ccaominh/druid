@@ -4,9 +4,9 @@
 
 dependencies {
     compile 'org.openjdk.jmh:jmh-core:1.21'
-    compile project(':druid-processing')
+    compile project(path: ':druid-processing', configuration: 'tests')
     compile project(':druid-server')
-    compile project(':druid-sql')
+    compile project(path: ':druid-sql', configuration: 'tests')
     compile project(':druid-datasketches')
     compile project(':druid-datasketches')
     compile project(':druid-histogram')

@@ -4,10 +4,10 @@
 
 dependencies {
     compile 'org.apache.commons:commons-math3:3.6.1'
-    testCompile project(':druid-core')
-    testCompile project(':druid-server')
-    testCompile project(':druid-processing')
-    testCompile project(':druid-sql')
+    testCompile project(path: ':druid-core', configuration: 'tests')
+    testCompile project(path: ':druid-server', configuration: 'tests')
+    testCompile project(path: ':druid-processing', configuration: 'tests')
+    testCompile project(path: ':druid-sql', configuration: 'tests')
     testCompile 'junit:junit:4.12'
     testCompile 'org.easymock:easymock:4.0.2'
     providedCompile project(':druid-processing')

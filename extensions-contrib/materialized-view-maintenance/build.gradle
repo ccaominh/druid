@@ -3,8 +3,10 @@
  */
 
 dependencies {
-    testCompile project(':druid-server')
-    testCompile project(':druid-processing')
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.easymock:easymock:4.0.2'
+    testCompile project(path: ':druid-server', configuration: 'tests')
+    testCompile project(path: ':druid-processing', configuration: 'tests')
     testCompile 'org.easymock:easymock:4.0.2'
     providedCompile project(':druid-server')
     providedCompile project(':druid-indexing-service')
