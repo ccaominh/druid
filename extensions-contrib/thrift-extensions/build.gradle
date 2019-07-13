@@ -21,12 +21,12 @@ dependencies {
 group = 'org.apache.druid.extensions.contrib'
 description = 'druid-thrift-extensions'
 
-String thriftDir = "$buildDir/generated/sources/thrift"
+String thriftDir = "${buildDir}/generated/sources/thrift"
 
 compileTestJava.dependsOn compileScrooge
 
 compileScrooge {
-    thriftFiles = fileTree(dir: "$projectDir/src/test/thrift", include: "**/*.thrift")
+    thriftFiles = fileTree(dir: "${projectDir}/src/test/thrift", include: "**/*.thrift")
     dest = file(thriftDir)
 }
 

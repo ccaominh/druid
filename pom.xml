@@ -980,8 +980,6 @@
                     </sourceDirectories>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
                     <configLocation>codestyle/checkstyle.xml</configLocation>
-                    <suppressionsLocation>codestyle/checkstyle-suppressions.xml</suppressionsLocation>
-                    <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
                     <encoding>UTF-8</encoding>
                     <headerLocation>codestyle/LICENSE.txt</headerLocation>
                     <consoleOutput>true</consoleOutput>

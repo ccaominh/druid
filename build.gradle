@@ -8,12 +8,12 @@ allprojects {
 }
 
 subprojects {
+    apply plugin: 'checkstyle'
     apply plugin: 'java'
     apply plugin: 'maven-publish'
     apply plugin: 'war'
 
     repositories {
-        mavenLocal()
         maven {
             url = 'https://repository.apache.org/snapshots'
         }
@@ -37,9 +37,6 @@ subprojects {
 
     sourceCompatibility = '1.8'
 
-    configurations.all {
-    }
-
     publishing {
         publications {
             maven(MavenPublication) {
@@ -50,5 +47,23 @@ subprojects {
 
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
+    }
+
+    String checkstyleRootDir = "${rootProject.projectDir}/codestyle"
+
+    checkstyle {
+        configFile = file("${checkstyleRootDir}/checkstyle.xml")
+        configProperties = [
+            'checkstyle.header.file': "${checkstyleRootDir}/LICENSE.txt",
+            'checkstyle.suppressions': "${checkstyleRootDir}/checkstyle-suppressions.xml",
+        ]
+    }
+
+    checkstyleMain {
+        source = fileTree('src/main/java')
+    }
+
+    checkstyleTest {
+        source = fileTree('src/test/java')
     }
 }
