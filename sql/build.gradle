@@ -8,10 +8,18 @@ configurations {
 
 dependencies {
     compile project(':druid-server')
-    compile 'org.apache.calcite:calcite-core:1.17.0'
+    compile('org.apache.calcite:calcite-core:1.17.0') {
+        // Calcite 1.15.0 uses sketches-core 0.9.0 for a profiling feature:
+        // (https://issues.apache.org/jira/browse/CALCITE-1616).
+        // This conflicts with druid-datasketches which uses a newer version of sketches-core.
+        // Druid does not use this Calcite profiling feature, so we exclude sketches-core here.
+        exclude group: 'com.yahoo.datasketches', module: 'sketches-core'
+    }
     compile 'org.apache.calcite:calcite-linq4j:1.17.0'
     compile 'org.apache.calcite.avatica:avatica-core:1.12.0'
-    compile 'org.apache.calcite.avatica:avatica-server:1.12.0'
+    compile('org.apache.calcite.avatica:avatica-server:1.12.0') {
+        exclude group: 'org.eclipse.jetty', module: 'jetty-http'
+    }
     compile 'io.netty:netty-all:4.1.30.Final'
     testCompile 'junit:junit:4.12'
     testCompile 'org.apache.calcite:calcite-core:1.17.0'

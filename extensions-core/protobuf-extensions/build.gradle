@@ -4,7 +4,9 @@
 
 dependencies {
     compile 'com.google.protobuf:protobuf-java:3.2.0'
-    compile 'com.google.protobuf:protobuf-java-util:3.2.0'
+    compile('com.google.protobuf:protobuf-java-util:3.2.0') {
+        exclude group: 'com.google.guava', module: 'guava'
+    }
     compile 'com.github.os72:protobuf-dynamic:0.9.3'
     testCompile 'junit:junit:4.12'
     providedCompile project(':druid-core')

@@ -3,11 +3,32 @@
  */
 
 dependencies {
-    compile 'org.apache.orc:orc-mapreduce:1.5.5'
+    compile('org.apache.orc:orc-mapreduce:1.5.5') {
+        exclude group: 'com.esotericsoftware', module: 'kryo-shaded'
+        exclude group: 'com.google.guava', module: 'guava'
+        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+        exclude group: 'com.sun.jersey', module: 'jersey-core'
+        exclude group: 'com.sun.jersey', module: 'jersey-server'
+        exclude group: 'commons-cli', module: 'commons-cli'
+        exclude group: 'commons-codec', module: 'commons-codec'
+        exclude group: 'commons-io', module: 'commons-io'
+        exclude group: 'commons-lang', module: 'commons-lang'
+        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: 'javax.ws.rs', module: 'jsr311-api'
+        exclude group: 'javax.xml.bind', module: 'jaxb-api'
+        exclude group: 'org.apache.hadoop', module: 'hadoop-hdfs'
+        exclude group: 'log4j', module: 'log4j'
+        exclude group: 'org.codehaus.jackson', module: 'jackson-core-asl'
+        exclude group: 'org.codehaus.jackson', module: 'jackson-mapper-asl'
+        exclude group: 'org.slf4j', module: 'slf4j-api'
+        exclude group: 'xmlenc', module: 'xmlenc'
+    }
     testCompile 'junit:junit:4.12'
     providedCompile project(':druid-core')
     providedCompile project(':druid-indexing-hadoop')
-    compileOnly 'org.apache.hadoop:hadoop-client:2.8.3'
+    compileOnly('org.apache.hadoop:hadoop-client:2.8.3') {
+        exclude group: 'org.apache.avro', module: 'avro'
+    }
 }
 
 group = 'org.apache.druid.extensions'

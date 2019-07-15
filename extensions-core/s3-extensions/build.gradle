@@ -10,7 +10,10 @@ dependencies {
     providedCompile project(':druid-core')
     providedCompile project(':druid-aws-common')
     compileOnly 'commons-io:commons-io:2.5'
-    compileOnly 'com.fasterxml.jackson.module:jackson-module-guice:2.6.7'
+    compileOnly('com.fasterxml.jackson.module:jackson-module-guice:2.6.7') {
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+    }
 }
 
 group = 'org.apache.druid.extensions'

@@ -3,7 +3,9 @@
  */
 
 dependencies {
-    compile 'org.apache.hive:hive-storage-api:2.7.0'
+    compile('org.apache.hive:hive-storage-api:2.7.0') {
+        exclude group: 'org.slf4j', module: 'slf4j-api'
+    }
     testCompile project(path: ':druid-processing', configuration: 'tests')
     testCompile project(path: ':druid-core', configuration: 'tests')
     testCompile project(path: ':druid-server', configuration: 'tests')

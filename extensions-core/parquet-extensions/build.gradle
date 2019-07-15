@@ -3,18 +3,33 @@
  */
 
 dependencies {
-    compile 'org.apache.parquet:parquet-column:1.10.1'
-    compile 'org.apache.parquet:parquet-avro:1.10.1'
+    compile('org.apache.parquet:parquet-column:1.10.1') {
+        exclude group: 'commons-codec', module: 'commons-codec'
+        exclude group: 'commons-compress', module: 'commons-compress'
+        exclude group: 'org.slf4j', module: 'slf4j-api'
+    }
+    compile('org.apache.parquet:parquet-avro:1.10.1') {
+        exclude group: 'org.apache.avro', module: 'avro'
+        exclude group: 'commons-pool', module: 'commons-pool'
+        exclude group: 'it.unimi.dsi', module: 'fastutil'
+        exclude group: 'org.codehaus.jackson', module: 'jackson-core-asl'
+        exclude group: 'org.codehaus.jackson', module: 'jackson-mapper-asl'
+        exclude group: 'org.slf4j', module: 'slf4j-api'
+    }
     compile 'org.xerial.snappy:snappy-java:1.1.7.2'
     testCompile 'junit:junit:4.12'
-    testCompile 'org.apache.hadoop:hadoop-mapreduce-client-core:2.8.3'
+    testCompile('org.apache.hadoop:hadoop-mapreduce-client-core:2.8.3') {
+        exclude group: 'javax.servlet', module: 'servlet-api'
+    }
     testCompile 'org.apache.directory.api:api-util:1.0.3'
     testCompile 'org.apache.hadoop:hadoop-common:2.8.3'
     providedCompile project(':druid-avro-extensions')
     providedCompile project(':druid-core')
     providedCompile project(':druid-indexing-hadoop')
     project(':druid-indexing-hadoop')
-    compileOnly 'org.apache.hadoop:hadoop-client:2.8.3'
+    compileOnly('org.apache.hadoop:hadoop-client:2.8.3') {
+        exclude group: 'org.apache.avro', module: 'avro'
+    }
 }
 
 group = 'org.apache.druid.extensions'

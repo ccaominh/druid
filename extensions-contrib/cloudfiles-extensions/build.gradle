@@ -3,14 +3,23 @@
  */
 
 dependencies {
-    compile 'com.google.inject:guice:3.0'
+    compile('com.google.inject:guice:3.0') {
+        exclude group: 'aopalliance', module: 'aopalliance'
+    }
     compile 'com.google.inject.extensions:guice-servlet:3.0'
     compile 'com.google.inject.extensions:guice-multibindings:3.0'
-    compile 'org.apache.jclouds.driver:jclouds-slf4j:1.9.1'
-    compile 'org.apache.jclouds.driver:jclouds-sshj:1.9.1'
+    compile('org.apache.jclouds.driver:jclouds-slf4j:1.9.1') {
+        exclude group: 'org.slf4j', module: 'slf4j-api'
+    }
+    compile('org.apache.jclouds.driver:jclouds-sshj:1.9.1') {
+        exclude group: 'org.slf4j', module: 'slf4j-api'
+    }
     compile 'org.apache.jclouds.provider:rackspace-cloudfiles-us:1.9.1'
     compile 'org.apache.jclouds.provider:rackspace-cloudfiles-uk:1.9.1'
-    compile 'com.fasterxml.jackson.module:jackson-module-guice:2.6.7'
+    compile('com.fasterxml.jackson.module:jackson-module-guice:2.6.7') {
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
+    }
     testCompile 'junit:junit:4.12'
     testCompile 'org.easymock:easymock:4.0.2'
     testCompile project(':druid-server')

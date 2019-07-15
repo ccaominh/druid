@@ -3,7 +3,26 @@
  */
 
 dependencies {
-    compile 'com.netflix.astyanax:astyanax:1.0.1'
+    compile('com.netflix.astyanax:astyanax:1.0.1') {
+        exclude group: 'jline', module: 'jline'
+        exclude group: 'joda-time', module: 'joda-time'
+        exclude group: 'org.mortbay.jetty', module: 'jetty-util'
+        exclude group: 'com.ning', module: 'compress-lzf'
+        exclude group: 'commons-lang', module: 'commons-lang'
+        exclude group: 'commons-cli', module: 'commons-cli'
+        exclude group: 'commons-httpclient', module: 'commons-httpclient'
+        exclude group: 'log4j', module: 'log4j'
+        exclude group: 'commons-codec', module: 'commons-codec'
+        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+        exclude group: 'org.apache.httpcomponents', module: 'httpcore'
+        exclude group: 'org.codehaus.jackson', module: 'jackson-core-asl'
+        exclude group: 'org.codehaus.jackson', module: 'jackson-mapper-asl'
+        exclude group: 'org.apache.zookeeper', module: 'zookeeper'
+        exclude group: 'org.slf4j', module: 'slf4j-api'
+        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+        exclude group: 'com.github.stephenc.high-scale-lib', module: 'high-scale-lib'
+    }
     testCompile 'junit:junit:4.12'
     providedCompile project(':druid-core')
     compileOnly 'commons-io:commons-io:2.5'

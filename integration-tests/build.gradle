@@ -8,7 +8,9 @@ dependencies {
     compile project(':druid-datasketches')
     compile project(':druid-histogram')
     compile project(':mysql-metadata-storage')
-    compile project(':druid-kafka-indexing-service')
+    compile(project(':druid-kafka-indexing-service')) {
+        exclude group: 'org.apache.kafka', module: 'kafka-clients'
+    }
     compile project(':druid-basic-security')
     compile project(':druid-lookups-cached-global')
     compile project(':simple-client-sslcontext')
@@ -17,7 +19,10 @@ dependencies {
     compile 'org.apache.calcite.avatica:avatica:1.10.0'
     compile 'org.apache.calcite.avatica:avatica-server:1.10.0'
     compile 'org.testng:testng:6.8.7'
-    compile 'org.apache.kafka:kafka_2.12:2.1.0'
+    compile('org.apache.kafka:kafka_2.12:2.1.0') {
+        exclude group: 'log4j', module: 'log4j'
+        exclude group: 'slf4j-log4j12', module: 'org.slf4j'
+    }
     testCompile 'org.easymock:easymock:4.0.2'
 }
 

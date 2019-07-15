@@ -7,9 +7,17 @@ plugins {
 }
 
 dependencies {
-    compile 'org.apache.thrift:libthrift:0.9.3'
-    compile 'org.apache.hadoop:hadoop-client:2.8.3'
+    compile('org.apache.thrift:libthrift:0.9.3') {
+        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+        exclude group: 'org.apache.httpcomponents', module: 'httpcore'
+    }
+    compile('org.apache.hadoop:hadoop-client:2.8.3') {
+        exclude group: 'org.apache.avro', module: 'avro'
+    }
     compile('com.twitter.elephantbird:elephant-bird-core:4.8') {
+        exclude group: 'com.hadoop.gplcompression', module: 'hadoop-lzo'
+        exclude group: 'org.apache.thrift', module: 'libthrift'
         exclude group: 'com.hadoop.gplcompression', module: 'hadoop-lzo'
     }
     compile 'com.twitter.elephantbird:elephant-bird-hadoop-compat:4.8'

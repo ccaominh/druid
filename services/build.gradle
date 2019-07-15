@@ -8,7 +8,9 @@ dependencies {
     compile project(':druid-indexing-hadoop')
     compile project(':druid-indexing-service')
     compile project(':druid-sql')
-    compile 'io.airlift:airline:0.7'
+    compile('io.airlift:airline:0.7') {
+        exclude group: 'com.google.code.findbugs', module: 'annotations' // LGPL licensed library
+    }
     testCompile 'junit:junit:4.12'
 }
 

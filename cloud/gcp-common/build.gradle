@@ -3,8 +3,17 @@
  */
 
 dependencies {
-    compile 'com.google.api-client:google-api-client:1.22.0'
-    compile 'com.google.http-client:google-http-client-jackson2:1.22.0'
+    compile('com.google.api-client:google-api-client:1.22.0') {
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
+        exclude group: 'com.google.guava', module: 'guava-jdk5'
+        exclude group: 'org.apache.httpcomponents', module: 'httpcore'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
+    compile('com.google.http-client:google-http-client-jackson2:1.22.0') {
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
     compile 'com.fasterxml.jackson.module:jackson-module-guice:2.6.7'
     testCompile 'junit:junit:4.12'
     providedCompile project(':druid-core')

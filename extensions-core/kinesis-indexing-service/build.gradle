@@ -3,8 +3,12 @@
  */
 
 dependencies {
-    compile 'com.amazonaws:aws-java-sdk-kinesis:1.11.199'
-    compile 'com.amazonaws:aws-java-sdk-sts:1.11.199'
+    compile('com.amazonaws:aws-java-sdk-kinesis:1.11.199') {
+       exclude group: 'com.amazonaws', module: 'aws-java-sdk-core' // aws-java-sdk-core is provided by Druid core
+    }
+    compile('com.amazonaws:aws-java-sdk-sts:1.11.199') {
+        exclude group: 'aws-java-sdk-core', module: 'com.amazonaws'
+    }
     testCompile 'org.easymock:easymock:4.0.2'
     testCompile 'junit:junit:4.12'
     testCompile project(path: ':druid-server', configuration: 'tests')

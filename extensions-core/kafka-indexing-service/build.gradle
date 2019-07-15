@@ -9,7 +9,9 @@ dependencies {
     testCompile project(path: ':druid-processing', configuration: 'tests')
     testCompile project(path: ':druid-server', configuration: 'tests')
     testCompile project(path: ':druid-indexing-service', configuration: 'tests')
-    testCompile 'org.apache.curator:curator-test:2.12.0'
+    testCompile('org.apache.curator:curator-test:2.12.0') {
+        exclude group: 'org.jboss.netty', module: 'netty'
+    }
     testCompile 'org.easymock:easymock:4.0.2'
     providedCompile project(':druid-core')
     providedCompile project(':druid-indexing-service')

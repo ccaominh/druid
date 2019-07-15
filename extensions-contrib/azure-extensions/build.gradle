@@ -3,7 +3,11 @@
  */
 
 dependencies {
-    compile 'com.microsoft.azure:azure-storage:2.1.0'
+    compile('com.microsoft.azure:azure-storage:2.1.0') {
+        exclude group: 'org.slf4j', module: 'slf4j-api'
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
+        exclude group: 'org.apache.commons', module: 'commons-lang3'
+    }
     compile 'com.fasterxml.jackson.module:jackson-module-guice:2.6.7'
     testCompile 'junit:junit:4.12'
     testCompile project(':druid-server')
