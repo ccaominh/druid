@@ -16,6 +16,7 @@ sourceSets {
 
 configurations {
     tests
+    sigarDist
 }
 
 dependencies {
@@ -78,6 +79,9 @@ dependencies {
     testCompile 'org.eclipse.jetty:jetty-server:9.4.10.v20180503'
     testCompile 'org.eclipse.jetty:jetty-servlet:9.4.10.v20180503'
     compileOnly 'org.hyperic:sigar-dist:1.6.5.132'
+    sigarDist('org.hyperic:sigar-dist:1.6.5.132') {
+        transitive = false
+    }
 }
 
 description = 'druid-core'
@@ -86,6 +90,23 @@ task testsJar(type: Jar) {
     classifier = 'tests'
     from(sourceSets.test.output)
 }
+
+task copySigarLibToResources(type: Copy) {
+    from zipTree(configurations.sigarDist.singleFile)
+
+    include '**/sigar-bin/lib/*'
+    exclude '**/sigar-bin/lib/*jar'
+
+    // Flatten directories
+    eachFile {
+        path = name
+    }
+    includeEmptyDirs = false
+
+    into sourceSets.main.java.outputDir
+}
+
+classes.dependsOn copySigarLibToResources
 
 publishing.publications.maven.artifact(testsJar)
 

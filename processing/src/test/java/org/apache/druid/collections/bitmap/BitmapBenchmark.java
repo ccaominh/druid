@@ -43,7 +43,7 @@ import java.util.Random;
  * TODO rewrite this benchmark to JMH
  */
 @BenchmarkOptions(clock = Clock.NANO_TIME, benchmarkRounds = 50)
-public class BitmapBenchmark
+public abstract class BitmapBenchmark
 {
   public static final int LENGTH = 500_000;
   public static final int SIZE = 10_000;

@@ -47,6 +47,40 @@ task testsJar(type: Jar) {
     from(sourceSets.test.output)
 }
 
+test {
+    useJUnit {
+        excludeCategories 'org.apache.druid.collections.test.annotation.Benchmark'
+    }
+
+    allJvmArgs = [
+        '-Xmx512m',
+        '-XX:MaxDirectMemorySize=2500m',
+        '-Duser.language=en',
+        '-Duser.GroupByQueryRunnerTest.javacountry=US',
+        '-Dfile.encoding=UTF-8',
+        '-Duser.timezone=UTC',
+        '-Djava.util.logging.manager=org.apache.logging.log4j.jul.LogManager',
+        '-Ddruid.indexing.doubleStorage=double', // TODO After fixing https://github.com/apache/incubator-druid/issues/4964 remove this parameter
+    ]
+}
+
+task testBenchmark(type: Test) {
+    useJUnit {
+        includeCategories 'org.apache.druid.collections.test.annotation.Benchmark'
+        excludeCategories 'org.apache.druid.collections.test.annotation.Dummy'
+    }
+
+    allJvmArgs = [
+        '-server',
+        '-Xms3G',
+        '-Xmx3G',
+        '-Djub.consumers=CONSOLE,H2',
+        '-Djub.db.file=benchmarks/benchmarks',
+    ]
+}
+
+// TODO add annotation processor
+
 publishing.publications.maven.artifact(testsJar)
 
 artifacts {

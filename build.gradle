@@ -37,6 +37,19 @@ subprojects {
 
     sourceCompatibility = '1.8'
 
+    configurations.all {
+        resolutionStrategy {
+            // Prevent gradle from resolving conflict with a newer version that has behavior changes
+            force 'com.google.guava:guava:16.0.1'
+            force 'org.apache.zookeeper:zookeeper:3.4.11'
+
+            // jackson 2.7.x causes injection error and 2.8.x can't be used because avatica is using 2.6.3
+            force 'com.fasterxml.jackson.core:jackson-core:2.6.7'
+            force 'com.fasterxml.jackson.core:jackson-annotations:2.6.7'
+            force 'com.fasterxml.jackson.core:jackson-databind:2.6.7'
+        }
+    }
+
     publishing {
         publications {
             maven(MavenPublication) {
@@ -55,7 +68,7 @@ subprojects {
         configFile = file("${checkstyleRootDir}/checkstyle.xml")
         configProperties = [
             'checkstyle.header.file': "${checkstyleRootDir}/LICENSE.txt",
-            'checkstyle.suppressions': "${checkstyleRootDir}/checkstyle-suppressions.xml",
+            'config_loc': "${checkstyleRootDir}",
         ]
     }
 
@@ -65,5 +78,19 @@ subprojects {
 
     checkstyleTest {
         source = fileTree('src/test/java')
+    }
+
+    test {
+        allJvmArgs = [
+            '-Xmx1500m',
+            '-XX:MaxDirectMemorySize=512m',
+            '-Duser.language=en',
+            '-Duser.GroupByQueryRunnerTest.javacountry=US',
+            '-Dfile.encoding=UTF-8',
+            '-Duser.timezone=UTC',
+            '-Djava.util.logging.manager=org.apache.logging.log4j.jul.LogManager',
+            '-Daws.region=us-east-1', // required for s3-related unit tests
+            '-Ddruid.indexing.doubleStorage=double', // TODO After fixing https://github.com/apache/incubator-druid/issues/4964 remove this parameter
+        ]
     }
 }

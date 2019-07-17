@@ -18,7 +18,7 @@ dependencies {
     providedCompile project(':druid-indexing-service')
     providedCompile project(':druid-server')
     providedCompile project(':druid-aws-common')
-    compileOnly 'com.amazonaws:amazon-kinesis-client:1.9.2'
+    providedCompile 'com.amazonaws:amazon-kinesis-client:1.9.2'
 }
 
 group = 'org.apache.druid.extensions'

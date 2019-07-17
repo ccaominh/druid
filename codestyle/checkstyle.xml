@@ -29,8 +29,10 @@
     <property name="fileExtensions" value="java"/>
   </module>
 
+  <!-- This SuppressionFilter is used by gradle -->
   <module name="SuppressionFilter">
-    <property name="file" value="codestyle/checkstyle-suppressions.xml"/>
+    <property name="optional" value="true"/> <!-- so that maven builds do not fail with undefined property "config_loc" -->
+    <property name="file" value="${config_loc}/checkstyle-suppressions.xml"/>
   </module>
 
   <module name="NewlineAtEndOfFile"/>

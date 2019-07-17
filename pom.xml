@@ -980,6 +980,9 @@
                     </sourceDirectories>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
                     <configLocation>codestyle/checkstyle.xml</configLocation>
+                    <suppressionsLocation>codestyle/checkstyle-suppressions.xml</suppressionsLocation>
+                    <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+                    <propertyExpansion>config_loc=codestyle</propertyExpansion> <!-- unused by maven but used by gradle -->
                     <encoding>UTF-8</encoding>
                     <headerLocation>codestyle/LICENSE.txt</headerLocation>
                     <consoleOutput>true</consoleOutput>
