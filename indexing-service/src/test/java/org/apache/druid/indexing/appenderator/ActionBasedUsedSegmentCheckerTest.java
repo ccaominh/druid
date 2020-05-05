@@ -138,4 +138,11 @@ public class ActionBasedUsedSegmentCheckerTest
 
     EasyMock.verify(taskActionClient);
   }
+
+  @Test
+  public void testToString()
+  {
+    final UsedSegmentChecker checker = new ActionBasedUsedSegmentChecker(null);
+    Assert.assertEquals("ActionBasedUsedSegmentChecker{taskActionClient=null}", checker.toString());
+  }
 }

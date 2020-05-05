@@ -589,6 +589,14 @@ public class PullDependencies implements Runnable
       return new Builder();
     }
 
+    @Override
+    public String toString()
+    {
+      return "Dependencies{" +
+             "groupIdToArtifactIds=" + groupIdToArtifactIds +
+             '}';
+    }
+
     static final class Builder
     {
       private final ImmutableSetMultimap.Builder<String, String> groupIdToArtifactIdsBuilder =
