@@ -77,4 +77,12 @@ public class ActionBasedUsedSegmentChecker implements UsedSegmentChecker
 
     return usedSegments;
   }
+
+  @Override
+  public String toString()
+  {
+    return "ActionBasedUsedSegmentChecker{" +
+           "taskActionClient=" + taskActionClient +
+           '}';
+  }
 }

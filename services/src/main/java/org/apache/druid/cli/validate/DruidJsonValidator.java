@@ -254,4 +254,16 @@ public class DruidJsonValidator extends GuiceRunnable
         }
     );
   }
+
+  @Override
+  public String toString()
+  {
+    return "DruidJsonValidator{" +
+           "logWriter=" + logWriter +
+           ", jsonFile='" + jsonFile + '\'' +
+           ", type='" + type + '\'' +
+           ", resource='" + resource + '\'' +
+           ", toLogger=" + toLogger +
+           '}';
+  }
 }
