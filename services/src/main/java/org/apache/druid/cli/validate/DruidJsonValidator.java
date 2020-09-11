@@ -63,6 +63,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  */
@@ -253,5 +254,40 @@ public class DruidJsonValidator extends GuiceRunnable
           }
         }
     );
+  }
+
+  @Override
+  public String toString()
+  {
+    return "DruidJsonValidator{" +
+           "logWriter=" + logWriter +
+           ", jsonFile='" + jsonFile + '\'' +
+           ", type='" + type + '\'' +
+           ", resource='" + resource + '\'' +
+           ", toLogger=" + toLogger +
+           '}';
+  }
+
+  @Override
+  public boolean equals(Object o)
+  {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    DruidJsonValidator that = (DruidJsonValidator) o;
+    return toLogger == that.toLogger &&
+           Objects.equals(logWriter, that.logWriter) &&
+           Objects.equals(jsonFile, that.jsonFile) &&
+           Objects.equals(type, that.type) &&
+           Objects.equals(resource, that.resource);
+  }
+
+  @Override
+  public int hashCode()
+  {
+    return Objects.hash(logWriter, jsonFile, type, resource, toLogger);
   }
 }

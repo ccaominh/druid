@@ -151,7 +151,7 @@ jobs:
         - ${MVN} -pl ${MAVEN_PROJECTS} jacoco:report
         # Add merge target branch to determine diff (see https://github.com/travis-ci/travis-ci/issues/6069).
         # This is not needed for build triggered by tags, since there will be no code diff.
-        - echo "TRAVIS_BRANCH=${TRAVIS_BRANCH}"  # for debugging
+        - echo "TRAVIS_BRANCH=${TRAVIS_BRANCH} TRAVIS_TAG=${TRAVIS_TAG}"  # for debugging
         - if [[ -z "${TRAVIS_TAG}" ]]; then git remote set-branches --add origin ${TRAVIS_BRANCH} && git fetch; fi
         # Determine the modified files that match the maven projects being tested. We use maven project lists that
         # either exclude (starts with "!") or include (does not start with "!"), so both cases need to be handled.
